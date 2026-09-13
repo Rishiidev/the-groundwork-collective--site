@@ -170,6 +170,11 @@ def render_index() -> str:
         head(DATA["business_name"] + "  -  " + DATA["tagline"], DATA["meta_description"])
         + f'''
   <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero__mesh" aria-hidden="true">
+      <span class="hero__mesh-blob hero__mesh-blob--1"></span>
+      <span class="hero__mesh-blob hero__mesh-blob--2"></span>
+      <span class="hero__mesh-blob hero__mesh-blob--3"></span>
+    </div>
     <div class="hero__grid">
       <div class="hero__copy fade-in">
         <p class="hero__eyebrow"><span class="hero__eyebrow-mark">*</span> Vasai-Vihar, Maharashtra</p>
