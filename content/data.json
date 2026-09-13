@@ -1,0 +1,55 @@
+{
+  "business_name": "The Groundwork Collective",
+  "tagline": "A studio for serious creative practice",
+  "meta_description": "The Groundwork Collective is an education center in Virar West, Maharashtra. 6-month immersive courses in drawing, art, music and expression. WhatsApp us to start.",
+  "og_image": "/assets/photos/og.jpg",
+  "canonical_url": "https://the-groundwork-collective.vercel.app",
+  "address_street": "Shop no G-27, Cosmos Square, Global City, Rustomjee Global City, Virar West",
+  "address_city": "Vasai-Virar",
+  "address_state": "Maharashtra",
+  "address_postal": "401303",
+  "address_country": "IN",
+  "phone_display": "098198 94011",
+  "phone_intl": "+919819894011",
+  "whatsapp_display": "Confirm by WhatsApp",
+  "whatsapp_intl": "+919819894011",
+  "whatsapp_base_url": "https://wa.me/919819894011",
+  "email": "hello@thegroundworkcollective.in",
+  "instagram_handle": "the_groundwork_collective",
+  "instagram_url": "https://instagram.com/the_groundwork_collective",
+  "gbp_share_url": "https://share.google/SuRhQ9UotYi0npRXc",
+  "gbp_write_review_url": "https://search.google.com/local/writereview?placeid=ChIJH0U0TzKt5zsRmZBYnqeVxLs",
+  "owner_name": "The Groundwork Collective founders",
+  "hours_status": "Confirm by WhatsApp",
+  "services": [
+    {
+      "id": "drawing-course",
+      "title": "6-month immersive drawing course",
+      "description": "A structured, cohort-based journey in drawing and visual practice. Led by working artists. Small groups. Designed for adults who want a serious creative practice, not a hobby.",
+      "pricing_label": "Confirm by WhatsApp",
+      "whatsapp_intent": "drawing_course"
+    },
+    {
+      "id": "art-music-expression",
+      "title": "Mind, Art, Music and Expression",
+      "description": "An open studio for art, music, and personal expression. Drop-in sessions, short workshops, and ongoing mentorship depending on what you want to explore.",
+      "pricing_label": "Confirm by WhatsApp",
+      "whatsapp_intent": "open_studio"
+    },
+    {
+      "id": "custom-enquiry",
+      "title": "Tell us what you want to learn",
+      "description": "If neither of the above fits, send us a message. We design custom tracks for serious learners: portfolio prep, creative re-direction, or specific skills.",
+      "pricing_label": "Confirm by WhatsApp",
+      "whatsapp_intent": "custom"
+    }
+  ],
+  "hero_photo_seed": "groundwork-virar-studio-2026-09-13",
+  "service_photo_seeds": {
+    "drawing-course": "groundwork-drawing-table",
+    "art-music-expression": "groundwork-open-studio",
+    "custom-enquiry": "groundwork-studio-detail"
+  },
+  "year": 2026,
+  "site_built_by": "Forge"
+}
