@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://the-groundwork-collective.vercel.app/sitemap.xml
