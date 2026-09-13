@@ -54,16 +54,32 @@ def header(active: str = "") -> str:
 def footer() -> str:
     return f'''<footer class="site-footer" role="contentinfo">
   <div class="site-footer__inner">
-    <p class="site-footer__brand">{DATA["business_name"]}</p>
-    <p class="site-footer__links">
-      <a href="{wa_url("discovery")}">WhatsApp</a>
-      <a href="tel:{DATA["phone_intl"]}">{DATA["phone_display"]}</a>
-      <a href="mailto:{DATA["email"]}">{DATA["email"]}</a>
-      <a href="{DATA["instagram_url"]}" target="_blank" rel="noopener">Instagram</a>
-      <a href="{DATA["gbp_share_url"]}" target="_blank" rel="noopener">Google Maps</a>
-    </p>
-    <p>Shop no G-27, Cosmos Square, Global City, Virar West, Vasai-Vihar {DATA["address_postal"]}, India.</p>
-    <p>© {DATA["year"]} {DATA["business_name"]}. Made with care by <a href="https://forge.bruuhh.com" target="_blank" rel="noopener">{DATA["site_built_by"]}</a>.</p>
+    <div class="site-footer__brand">
+      <p class="site-footer__wordmark">{DATA["business_name"]}</p>
+      <p class="site-footer__tagline">A studio for serious creative practice.</p>
+    </div>
+    <div class="site-footer__cols">
+      <div class="site-footer__col">
+        <p class="site-footer__col-label">Visit</p>
+        <p>Shop no G-27<br>Cosmos Square, Global City<br>Virar West, {DATA["address_postal"]}<br>India</p>
+        <p><a class="site-footer__link" href="{DATA["gbp_share_url"]}" target="_blank" rel="noopener">Open in Google Maps</a></p>
+      </div>
+      <div class="site-footer__col">
+        <p class="site-footer__col-label">Studio</p>
+        <p><a class="site-footer__link" href="{wa_url("discovery")}">WhatsApp us</a></p>
+        <p><a class="site-footer__link" href="tel:{DATA["phone_intl"]}">{DATA["phone_display"]}</a></p>
+        <p><a class="site-footer__link" href="mailto:{DATA["email"]}">{DATA["email"]}</a></p>
+        <p><a class="site-footer__link" href="{DATA["instagram_url"]}" target="_blank" rel="noopener">Instagram</a></p>
+      </div>
+      <div class="site-footer__col">
+        <p class="site-footer__col-label">Hours</p>
+        <p>Confirm by WhatsApp.<br>We don't publish hours yet.</p>
+        <p class="site-footer__col-mark">Made in Vasai-Vihar.</p>
+      </div>
+    </div>
+    <div class="site-footer__legal">
+      <p>© {DATA["year"]} {DATA["business_name"]}. Hand-built with care by <a href="https://forge.bruuhh.com" target="_blank" rel="noopener">Forge</a>.</p>
+    </div>
   </div>
 </footer>'''
 
@@ -153,29 +169,57 @@ def render_index() -> str:
     return (
         head(DATA["business_name"] + "  -  " + DATA["tagline"], DATA["meta_description"])
         + f'''
-  <section class="hero fade-in" aria-labelledby="hero-heading">
-    <div class="hero__inner">
-      <p class="hero__eyebrow">Vasai-Vihar, Maharashtra</p>
-      <h1 id="hero-heading" class="hero__heading">{DATA["tagline"]}.</h1>
-      <p class="hero__subtext">{DATA["services"][0]["description"]}</p>
-      <div class="hero__ctas">
-        <a class="btn btn--primary" href="{wa_url("discovery")}">WhatsApp us</a>
-        <a class="btn btn--ghost" href="/services.html">See how we work</a>
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero__grid">
+      <div class="hero__copy fade-in">
+        <p class="hero__eyebrow"><span class="hero__eyebrow-mark">*</span> Vasai-Vihar, Maharashtra</p>
+        <h1 id="hero-heading" class="hero__heading">A studio for <em>serious</em> creative practice.</h1>
+        <p class="hero__subtext">{DATA["services"][0]["description"]}</p>
+        <div class="hero__ctas">
+          <a class="btn btn--primary btn--fill" href="{wa_url("discovery")}">WhatsApp us</a>
+          <a class="btn btn--ghost btn--underline" href="/services.html">See how we work</a>
+        </div>
+        <p class="hero__promise">Replies within 4 working hours. No forms, no callbacks - one WhatsApp thread.</p>
+        <p class="hero__since">Est. in Vasai-Vihar, since the studio opened its doors.</p>
       </div>
-      <p class="hero__promise">Replies within 4 working hours. No forms, no callbacks - one WhatsApp thread.</p>
+      <figure class="hero__media fade-in">
+        <div class="hero__media-frame">
+          <img src="{hero_photo}" alt="" width="800" height="1000" loading="eager" onerror="this.onerror=null;this.src='/assets/monogram.svg';">
+        </div>
+        <figcaption class="hero__media-caption">
+          <span class="hero__media-caption-mark">No. 01</span>
+          The studio, G-27 Cosmos Square, Virar West.
+        </figcaption>
+      </figure>
     </div>
-    <figure class="hero__media">
-      <img src="{hero_photo}" alt="" width="1280" height="720" loading="eager" onerror="this.onerror=null;this.src='/assets/monogram.svg';">
-      <figcaption class="hero__media-caption">The studio, G-27 Cosmos Square, Virar West.</figcaption>
-    </figure>
   </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span class="marquee__item">drawing</span><span class="marquee__dot">*</span>
+      <span class="marquee__item">music</span><span class="marquee__dot">*</span>
+      <span class="marquee__item">expression</span><span class="marquee__dot">*</span>
+      <span class="marquee__item">6-month cohort</span><span class="marquee__dot">*</span>
+      <span class="marquee__item">Vasai-Vihar</span><span class="marquee__dot">*</span>
+      <span class="marquee__item">studio practice</span><span class="marquee__dot">*</span>
+      <span class="marquee__item">drawing</span><span class="marquee__dot">*</span>
+      <span class="marquee__item">music</span><span class="marquee__dot">*</span>
+      <span class="marquee__item">expression</span><span class="marquee__dot">*</span>
+      <span class="marquee__item">6-month cohort</span><span class="marquee__dot">*</span>
+      <span class="marquee__item">Vasai-Vihar</span><span class="marquee__dot">*</span>
+      <span class="marquee__item">studio practice</span><span class="marquee__dot">*</span>
+    </div>
+  </div>
 
   <section class="trust-bar" aria-label="Studio facts">
     <div class="trust-bar__inner">
-      <span class="trust-bar__item"><span class="trust-bar__dot"></span> Founded by working artists</span>
-      <span class="trust-bar__item"><span class="trust-bar__dot"></span> 6-month immersive track</span>
-      <span class="trust-bar__item"><span class="trust-bar__dot"></span> Small cohorts</span>
-      <span class="trust-bar__item"><span class="trust-bar__dot"></span> Studio in Virar West</span>
+      <span class="trust-bar__item"><span class="trust-bar__dot"></span> <span class="trust-bar__label">Founded</span> by working artists</span>
+      <span class="trust-bar__sep" aria-hidden="true"></span>
+      <span class="trust-bar__item"><span class="trust-bar__dot"></span> <span class="trust-bar__label">Track</span> 6-month immersive</span>
+      <span class="trust-bar__sep" aria-hidden="true"></span>
+      <span class="trust-bar__item"><span class="trust-bar__dot"></span> <span class="trust-bar__label">Cohorts</span> 8 to 12 learners</span>
+      <span class="trust-bar__sep" aria-hidden="true"></span>
+      <span class="trust-bar__item"><span class="trust-bar__dot"></span> <span class="trust-bar__label">Studio</span> Virar West, 401303</span>
     </div>
   </section>
 
