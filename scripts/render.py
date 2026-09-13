@@ -141,17 +141,6 @@ def render_index() -> str:
         return seed_to_path.get(seed, "/assets/monogram.svg")
 
     hero_photo = local_or_fallback(DATA["hero_photo_seed"])
-    services_html = "\n".join(
-        f'''        <li class="service-card">
-          <img class="service-card__photo" src="{local_or_fallback(DATA["service_photo_seeds"][s["id"]])}" alt="" loading="lazy" onerror="this.onerror=null;this.src='/assets/monogram.svg';">
-          <h3 class="service-card__title">{s["title"]}</h3>
-          <p class="service-card__desc">{s["description"]}</p>
-          <div class="service-card__meta">
-            <span class="service-card__price">{s["pricing_label"]}</span>
-            <a class="btn btn--ghost" href="{wa_url(s["whatsapp_intent"])}">Enquire</a>
-          </div>
-        </li>''' for s in DATA["services"]
-    )
     faq_items = [
         ("Do I need prior experience to join?", "No. We work with complete beginners through intermediate. Tell us where you are in the form above and we'll match you to a cohort."),
         ("Is there a free trial class?", "Confirm by WhatsApp. We run short intro sessions when a new cohort opens."),
@@ -301,22 +290,104 @@ def render_index() -> str:
     </div>
   </section>
 
-  <section class="section" aria-labelledby="services-heading">
+  <section class="section cohort-section" aria-labelledby="cohort-heading">
     <div class="container">
+      <p class="cohort-eyebrow">The 6-month arc</p>
+      <h2 id="cohort-heading" class="section-heading">How a cohort moves through the studio.</h2>
+      <ol class="cohort-timeline">
+        <li class="cohort-step">
+          <span class="cohort-step__month">Month 01</span>
+          <h3 class="cohort-step__title">Foundation</h3>
+          <p class="cohort-step__desc">Mark-making, line weight, observing before drawing. Weekly studio sessions plus a personal practice prompt.</p>
+        </li>
+        <li class="cohort-step">
+          <span class="cohort-step__month">Month 02</span>
+          <h3 class="cohort-step__title">Seeing</h3>
+          <p class="cohort-step__desc">Light, shadow, proportion. You start drawing what you actually see instead of what you think is there.</p>
+        </li>
+        <li class="cohort-step">
+          <span class="cohort-step__month">Month 03</span>
+          <h3 class="cohort-step__title">Materials</h3>
+          <p class="cohort-step__desc">Charcoal, graphite, ink, conté. Finding which medium your hand wants to speak through.</p>
+        </li>
+        <li class="cohort-step">
+          <span class="cohort-step__month">Month 04</span>
+          <h3 class="cohort-step__title">Composition</h3>
+          <p class="cohort-step__desc">How a drawing holds the eye. Negative space, weight, framing - the rules a working artist knows by feel.</p>
+        </li>
+        <li class="cohort-step">
+          <span class="cohort-step__month">Month 05</span>
+          <h3 class="cohort-step__title">Series</h3>
+          <p class="cohort-step__desc">You start a body of work - one idea across multiple drawings. The shift from exercises to a personal voice.</p>
+        </li>
+        <li class="cohort-step">
+          <span class="cohort-step__month">Month 06</span>
+          <h3 class="cohort-step__title">Show + share</h3>
+          <p class="cohort-step__desc">End-of-cohort studio showing. Family and friends invited. Optional portfolio submission for portfolio-track learners.</p>
+        </li>
+      </ol>
+      <p class="cohort-foot">
+        Looking for a different shape? <a href="{wa_url("custom")}">Tell us what you want to learn</a> - we design custom tracks around real goals.
+      </p>
+    </div>
+  </section>
+
+  <section class="section services-featured" aria-labelledby="services-heading">
+    <div class="container">
+      <p class="services-eyebrow">Three ways to work with us</p>
       <h2 id="services-heading" class="section-heading">How the work is structured.</h2>
-      <ul class="services__grid">
-{services_html}
+      <ul class="services__grid services__grid--featured">
+        <li class="service-card service-card--featured">
+          <div class="service-card__media">
+            <img class="service-card__photo" src="{local_or_fallback(DATA["service_photo_seeds"]["drawing-course"])}" alt="" loading="lazy" onerror="this.onerror=null;this.src='/assets/monogram.svg';">
+            <span class="service-card__flag">Flagship</span>
+          </div>
+          <div class="service-card__body">
+            <h3 class="service-card__title">{DATA["services"][0]["title"]}</h3>
+            <p class="service-card__desc">{DATA["services"][0]["description"]}</p>
+            <div class="service-card__meta">
+              <span class="service-card__price">{DATA["services"][0]["pricing_label"]}</span>
+              <a class="btn btn--primary btn--fill" href="{wa_url(DATA["services"][0]["whatsapp_intent"])}">WhatsApp about this</a>
+            </div>
+          </div>
+        </li>
+        <li class="service-card">
+          <img class="service-card__photo" src="{local_or_fallback(DATA["service_photo_seeds"][DATA["services"][1]["id"]])}" alt="" loading="lazy" onerror="this.onerror=null;this.src='/assets/monogram.svg';">
+          <h3 class="service-card__title">{DATA["services"][1]["title"]}</h3>
+          <p class="service-card__desc">{DATA["services"][1]["description"]}</p>
+          <div class="service-card__meta">
+            <span class="service-card__price">{DATA["services"][1]["pricing_label"]}</span>
+            <a class="btn btn--ghost" href="{wa_url(DATA["services"][1]["whatsapp_intent"])}">Enquire</a>
+          </div>
+        </li>
+        <li class="service-card">
+          <img class="service-card__photo" src="{local_or_fallback(DATA["service_photo_seeds"][DATA["services"][2]["id"]])}" alt="" loading="lazy" onerror="this.onerror=null;this.src='/assets/monogram.svg';">
+          <h3 class="service-card__title">{DATA["services"][2]["title"]}</h3>
+          <p class="service-card__desc">{DATA["services"][2]["description"]}</p>
+          <div class="service-card__meta">
+            <span class="service-card__price">{DATA["services"][2]["pricing_label"]}</span>
+            <a class="btn btn--ghost" href="{wa_url(DATA["services"][2]["whatsapp_intent"])}">Enquire</a>
+          </div>
+        </li>
       </ul>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="reviews-block-heading">
+  <section class="section reviews-section" aria-labelledby="reviews-block-heading">
     <div class="container">
-      <h2 id="reviews-block-heading" class="section-heading">Reviews.</h2>
-      <div class="reviews-block">
-        <p class="reviews-block__count">0</p>
-        <p class="reviews-block__label">Google reviews so far. Be the first to write one.</p>
-        <a class="btn btn--primary" href="{DATA["gbp_write_review_url"]}" target="_blank" rel="noopener">Write a Google review</a>
+      <div class="reviews-block reviews-block--positioned">
+        <div class="reviews-block__top">
+          <p class="reviews-block__count">0</p>
+          <div class="reviews-block__meta">
+            <p class="reviews-block__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+            <p class="reviews-block__label">Google reviews so far.</p>
+            <p class="reviews-block__why">If you've worked with us, your review is the most valuable thing you can leave behind.</p>
+          </div>
+        </div>
+        <div class="reviews-block__cta">
+          <a class="btn btn--primary btn--fill" href="{DATA["gbp_write_review_url"]}" target="_blank" rel="noopener">Write a Google review</a>
+          <a class="btn btn--ghost btn--underline" href="{DATA["gbp_share_url"]}" target="_blank" rel="noopener">See us on Google Maps</a>
+        </div>
       </div>
     </div>
   </section>
