@@ -111,7 +111,7 @@ def head(title: str, desc: str) -> str:
 
 
 def close_main() -> str:
-    return f'</main>\n{footer()}\n<script src="/cro/quote-builder.js" defer></script>\n</body>\n</html>\n'
+    return f'</main>\n{footer()}\n<script src="/cro/quote-builder.js" defer></script>\n<script src="/cro/sticky-cta.js" defer></script>\n<a class="sticky-cta" href="{wa_url("discovery")}" id="sticky-cta" aria-label="WhatsApp The Groundwork Collective">\n  <svg class="sticky-cta__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>\n  <span>WhatsApp us</span>\n</a>\n</body>\n</html>\n'
 
 
 def render_index() -> str:
@@ -136,6 +136,20 @@ def render_index() -> str:
           </div>
         </li>''' for s in DATA["services"]
     )
+    faq_items = [
+        ("Do I need prior experience to join?", "No. We work with complete beginners through intermediate. Tell us where you are in the form above and we'll match you to a cohort."),
+        ("Is there a free trial class?", "Confirm by WhatsApp. We run short intro sessions when a new cohort opens."),
+        ("What if I miss a session in the 6-month track?", "Confirm by WhatsApp. We can talk you through the catch-up policy before you commit."),
+        ("What's the cohort size?", "Small. 8-12 learners per cohort so each person gets real attention from the working artists who run the studio."),
+        ("Do you offer payment plans?", "Confirm by WhatsApp. We do, for the 6-month track. Ask when you reach out."),
+        ("Is there a refund policy?", "Confirm by WhatsApp. Yes - we put it in writing before any payment. Ask for the policy doc when you enquire."),
+    ]
+    faq_html = "\n".join(
+        f'''        <details class="faq-item">
+          <summary class="faq-item__q"><span>{q}</span><span class="faq-item__icon" aria-hidden="true">+</span></summary>
+          <p class="faq-item__a">{a}</p>
+        </details>''' for q, a in faq_items
+    )
     return (
         head(DATA["business_name"] + "  -  " + DATA["tagline"], DATA["meta_description"])
         + f'''
@@ -148,9 +162,11 @@ def render_index() -> str:
         <a class="btn btn--primary" href="{wa_url("discovery")}">WhatsApp us</a>
         <a class="btn btn--ghost" href="/services.html">See how we work</a>
       </div>
+      <p class="hero__promise">Replies within 4 working hours. No forms, no callbacks - one WhatsApp thread.</p>
     </div>
     <figure class="hero__media">
       <img src="{hero_photo}" alt="" width="1280" height="720" loading="eager" onerror="this.onerror=null;this.src='/assets/monogram.svg';">
+      <figcaption class="hero__media-caption">The studio, G-27 Cosmos Square, Virar West.</figcaption>
     </figure>
   </section>
 
@@ -214,8 +230,24 @@ def render_index() -> str:
           </div>
           <div class="cro-engine__cta-wrap">
             <button type="submit" class="btn btn--primary">WhatsApp me this scope</button>
+            <button type="button" class="btn btn--ghost" id="qb-copy">Copy message instead</button>
           </div>
+          <p class="cro-engine__copy-status" id="qb-copy-status" role="status" aria-live="polite" hidden>Copied. Paste it into WhatsApp.</p>
         </form>
+        <ol class="cro-next" aria-label="What happens after you send">
+          <li class="cro-next__step">
+            <span class="cro-next__num">1</span>
+            <div><strong>We read it.</strong><span>Usually within an hour during the day.</span></div>
+          </li>
+          <li class="cro-next__step">
+            <span class="cro-next__num">2</span>
+            <div><strong>We reply with availability.</strong><span>Honest fit call - if we're not right for you, we say so.</span></div>
+          </li>
+          <li class="cro-next__step">
+            <span class="cro-next__num">3</span>
+            <div><strong>You decide.</strong><span>No follow-up pressure. One thread, you control it.</span></div>
+          </li>
+        </ol>
       </div>
     </div>
   </section>
@@ -237,6 +269,19 @@ def render_index() -> str:
         <p class="reviews-block__label">Google reviews so far. Be the first to write one.</p>
         <a class="btn btn--primary" href="{DATA["gbp_write_review_url"]}" target="_blank" rel="noopener">Write a Google review</a>
       </div>
+    </div>
+  </section>
+
+  <section class="section faq-section" aria-labelledby="faq-heading">
+    <div class="container">
+      <p class="faq-eyebrow">Before you WhatsApp</p>
+      <h2 id="faq-heading" class="section-heading">Six questions every prospect asks.</h2>
+      <div class="faq-list">
+{faq_html}
+      </div>
+      <p class="faq-foot">
+        Didn't see your question? <a href="{wa_url("discovery")}">WhatsApp us</a> - we read everything.
+      </p>
     </div>
   </section>
 

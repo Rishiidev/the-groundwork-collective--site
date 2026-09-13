@@ -51,6 +51,7 @@
   function init() {
     var form = document.getElementById("quote-builder-form");
     if (!form) return;
+
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       var data = new FormData(form);
@@ -73,6 +74,60 @@
       var url = WA_BASE + "?text=" + encodeURIComponent(msg);
       window.open(url, "_blank", "noopener");
     });
+
+    // Copy-to-clipboard fallback for desktop users who don't want to leave the page.
+    var copyBtn = document.getElementById("qb-copy");
+    var copyStatus = document.getElementById("qb-copy-status");
+    if (copyBtn) {
+      copyBtn.addEventListener("click", function () {
+        var data = new FormData(form);
+        var answers = {
+          learn: data.get("learn"),
+          level: data.get("level"),
+          goal: data.get("goal"),
+          start: data.get("start")
+        };
+        var incomplete = !answers.learn || !answers.level || !answers.goal || !answers.start;
+        if (incomplete) {
+          if (copyStatus) {
+            copyStatus.textContent = "Answer all four questions first, then copy.";
+            copyStatus.hidden = false;
+          }
+          return;
+        }
+        var msg = buildMessage(answers);
+        var done = function () {
+          if (copyStatus) {
+            copyStatus.textContent = "Copied. Paste it into WhatsApp.";
+            copyStatus.hidden = false;
+          }
+        };
+        var fail = function () {
+          if (copyStatus) {
+            copyStatus.textContent = "Couldn't copy automatically. Use the WhatsApp button instead.";
+            copyStatus.hidden = false;
+          }
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(msg).then(done, fail);
+        } else {
+          try {
+            var ta = document.createElement("textarea");
+            ta.value = msg;
+            ta.setAttribute("readonly", "");
+            ta.style.position = "absolute";
+            ta.style.left = "-9999px";
+            document.body.appendChild(ta);
+            ta.select();
+            var ok = document.execCommand("copy");
+            document.body.removeChild(ta);
+            ok ? done() : fail();
+          } catch (e) {
+            fail();
+          }
+        }
+      });
+    }
   }
 
   if (document.readyState === "loading") {

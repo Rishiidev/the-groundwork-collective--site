@@ -217,6 +217,12 @@ img { max-width: 100%; height: auto; display: block; }
   margin-bottom: var(--space-8);
 }
 .hero__ctas { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+.hero__promise {
+  margin-top: var(--space-4);
+  font-size: 0.875rem;
+  color: var(--muted);
+  font-style: italic;
+}
 .hero__media {
   margin: var(--space-12) auto 0;
   max-width: var(--container);
@@ -228,6 +234,12 @@ img { max-width: 100%; height: auto; display: block; }
   aspect-ratio: 16 / 9;
   object-fit: cover;
   background: var(--hairline);
+}
+.hero__media-caption {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: var(--space-3);
+  text-align: right;
 }
 
 /* Trust bar */
@@ -297,6 +309,56 @@ img { max-width: 100%; height: auto; display: block; }
   display: flex;
   gap: var(--space-3);
   flex-wrap: wrap;
+}
+.cro-engine__copy-status {
+  margin-top: var(--space-4);
+  font-size: 0.9rem;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+/* "What happens after you send" - 3-step flow under the form */
+.cro-next {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-12) 0 0 0;
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--hairline);
+  padding-top: var(--space-8);
+}
+@media (min-width: 768px) {
+  .cro-next { grid-template-columns: repeat(3, 1fr); gap: var(--space-8); }
+}
+.cro-next__step {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+.cro-next__num {
+  font-family: "DM Serif Display", Georgia, serif;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--accent);
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cro-next__step strong {
+  display: block;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+.cro-next__step span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.875rem;
+  line-height: 1.45;
 }
 
 /* Service cards */
@@ -459,10 +521,98 @@ img { max-width: 100%; height: auto; display: block; }
     scroll-behavior: auto !important;
   }
   .btn:hover, .contact-card:hover { transform: none; }
+  .sticky-cta { transition: none !important; }
 }
 
 /* Color scheme: light is the design lock; explicit block keeps
  * the gate honest and prevents browser flash-of-dark on reload. */
 @media (prefers-color-scheme: light) {
   :root { color-scheme: light; }
+}
+
+/* FAQ section */
+.faq-section { background: var(--bg); }
+.faq-eyebrow {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  margin-bottom: var(--space-3);
+}
+.faq-list {
+  max-width: 760px;
+}
+.faq-item {
+  border-top: 1px solid var(--hairline);
+  padding: var(--space-4) 0;
+}
+.faq-item:last-child { border-bottom: 1px solid var(--hairline); }
+.faq-item__q {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  cursor: pointer;
+  list-style: none;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--text);
+}
+.faq-item__q::-webkit-details-marker { display: none; }
+.faq-item__q::marker { content: ""; }
+.faq-item__icon {
+  font-family: "DM Serif Display", Georgia, serif;
+  font-size: 1.25rem;
+  color: var(--muted);
+  transition: transform 200ms var(--easing);
+  flex-shrink: 0;
+  width: 1.25rem;
+  text-align: center;
+}
+.faq-item[open] .faq-item__icon { transform: rotate(45deg); }
+.faq-item__a {
+  margin-top: var(--space-3);
+  color: var(--muted);
+  font-size: 0.95rem;
+  max-width: 65ch;
+}
+.faq-foot {
+  margin-top: var(--space-8);
+  color: var(--muted);
+}
+
+/* Sticky mobile WhatsApp CTA - hidden on desktop, slides up after scroll on mobile */
+.sticky-cta {
+  display: none;
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 50;
+  background: var(--accent);
+  color: var(--bg);
+  text-decoration: none;
+  padding: 14px 20px;
+  border-radius: var(--radius-pill);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  box-shadow: 0 12px 32px rgba(26, 35, 50, 0.18);
+  transform: translateY(120%);
+  opacity: 0;
+  transition: transform 280ms var(--easing), opacity 200ms var(--easing);
+  border: 1px solid var(--accent);
+  pointer-events: none;
+}
+.sticky-cta.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.sticky-cta__icon { flex-shrink: 0; }
+@media (max-width: 720px) {
+  .sticky-cta { display: inline-flex; }
 }
